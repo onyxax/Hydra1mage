@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ThemeInit } from "@/components/ThemeInit";
 import { ImageProvider } from "@/lib/image-context";
@@ -190,6 +191,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeInit />
+        <Analytics />
         <ImageProvider>
           <div className="min-h-screen" style={{ backgroundColor: "var(--bg-primary)" }}>
             <TopBar />
