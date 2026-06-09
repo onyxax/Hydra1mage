@@ -118,7 +118,7 @@ export default function EffectsTool({ imageFile, previewUrl, onFileSelect }: Too
 
   const drawPreview = useCallback(
     (img: HTMLImageElement, canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
-      const maxDim = 500;
+      const maxDim = 1200;
       const scale = Math.min(1, maxDim / Math.max(img.naturalWidth, img.naturalHeight));
       const sw = Math.round(img.naturalWidth * scale);
       const sh = Math.round(img.naturalHeight * scale);
@@ -127,6 +127,8 @@ export default function EffectsTool({ imageFile, previewUrl, onFileSelect }: Too
       tmp.width = sw;
       tmp.height = sh;
       const tmpCtx = tmp.getContext("2d")!;
+      tmpCtx.imageSmoothingEnabled = true;
+      tmpCtx.imageSmoothingQuality = "high";
       tmpCtx.drawImage(img, 0, 0, sw, sh);
 
       const tmpImg = new Image();
@@ -134,10 +136,12 @@ export default function EffectsTool({ imageFile, previewUrl, onFileSelect }: Too
         const result = runEffect(tmpImg);
         canvas.width = result.width;
         canvas.height = result.height;
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(result, 0, 0);
       };
-      tmpImg.src = tmp.toDataURL();
+      tmpImg.src = tmp.toDataURL("image/png");
     },
     [runEffect]
   );
