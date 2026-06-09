@@ -97,18 +97,14 @@ export default function AdjustTool({ imageFile, previewUrl, onFileSelect }: Tool
 
   const drawPreview = useCallback(
     (img: HTMLImageElement, canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
-      const maxDim = 1200;
-      const scale = Math.min(1, maxDim / Math.max(img.naturalWidth, img.naturalHeight));
-      const sw = Math.round(img.naturalWidth * scale);
-      const sh = Math.round(img.naturalHeight * scale);
+      const w = img.naturalWidth;
+      const h = img.naturalHeight;
 
       const tmp = document.createElement("canvas");
-      tmp.width = sw;
-      tmp.height = sh;
+      tmp.width = w;
+      tmp.height = h;
       const tmpCtx = tmp.getContext("2d")!;
-      tmpCtx.imageSmoothingEnabled = true;
-      tmpCtx.imageSmoothingQuality = "high";
-      tmpCtx.drawImage(img, 0, 0, sw, sh);
+      tmpCtx.drawImage(img, 0, 0, w, h);
 
       const tmpImg = new Image();
       tmpImg.onload = () => {

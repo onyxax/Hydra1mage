@@ -28,6 +28,50 @@
 
 ---
 
+## Preview
+
+### Home — Upload & Choose Your Tool
+
+<p align="center">
+  <img src="public/screenshots/home.png" alt="Hydra1mage Home" width="100%">
+</p>
+
+The dashboard gives you instant access to all 10 tools. Drop an image anywhere to get started — it never leaves your browser.
+
+### Crop — Interactive Visual Editor
+
+<p align="center">
+  <img src="public/screenshots/crop.png" alt="Hydra1mage Crop Tool" width="100%">
+</p>
+
+Drag-based crop editor powered by Cropper.js. Free-form or preset ratios (1:1, 4:3, 16:9). Pixel-perfect precision with real-time dimension readout.
+
+### Effects — 15+ Artistic Filters
+
+<p align="center">
+  <img src="public/screenshots/effects.png" alt="Hydra1mage Effects Tool" width="100%">
+</p>
+
+Transform your images with blur, sharpen, emboss, noise, vignette, grayscale, sepia, pixelate, duotone, posterize, edge detect, oil paint, and more.
+
+### Adjust — Fine-Tune Every Detail
+
+<p align="center">
+  <img src="public/screenshots/adjust.png" alt="Hydra1mage Adjust Tool" width="100%">
+</p>
+
+Full control over exposure, temperature, tint, highlights, shadows, vibrance, gamma, and sharpness. Full-resolution live preview.
+
+### Convert — 11 Format Support
+
+<p align="center">
+  <img src="public/screenshots/convert.png" alt="Hydra1mage Convert Tool" width="100%">
+</p>
+
+Convert between PNG, JPG, WebP, AVIF, GIF, BMP, TIFF, ICO, ICNS, SVG, and PDF. All processing happens client-side.
+
+---
+
 ## About
 
 Hydra1mage is a powerful, free online image editor that runs entirely in your browser. No server uploads, no sign-ups, no limits. Your images never leave your device — every operation happens locally using the Canvas API and modern Web Technologies.
@@ -103,7 +147,13 @@ Hydra1mage/
 ├── public/
 │   ├── favicon.svg          # App icon (earth-tone gradient)
 │   ├── robots.txt           # SEO crawler rules
-│   └── sitemap.xml          # Sitemap for search engines
+│   ├── sitemap.xml          # Sitemap for search engines
+│   └── screenshots/         # App screenshots for README & social embeds
+│       ├── home.png         # Dashboard screenshot
+│       ├── crop.png         # Crop tool screenshot
+│       ├── convert.png      # Convert tool screenshot
+│       ├── adjust.png       # Adjust tool screenshot
+│       └── effects.png      # Effects tool screenshot
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx       # Root layout, fonts, SEO, JSON-LD

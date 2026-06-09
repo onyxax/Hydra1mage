@@ -99,7 +99,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: [
       {
-        url: "/og-image.png",
+        url: "/screenshots/home.png",
         width: 1200,
         height: 630,
         alt: "Hydra1mage — Free Online Image Processing Suite",
@@ -110,7 +110,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hydra1mage — Free Online Image Tools",
     description: DESCRIPTION,
-    images: ["/og-image.png"],
+    images: ["/screenshots/home.png"],
   },
   robots: {
     index: true,
