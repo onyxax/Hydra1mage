@@ -34,10 +34,10 @@ export default function HomePage() {
   const { imageFile, previewUrl, handleFileSelect, handleClearImage } = useImageContext();
 
   return (
-    <div className="flex flex-col items-center gap-10">
+    <div className="flex flex-col items-center gap-6 sm:gap-10">
       <div className="text-center">
         <h1
-          className="text-4xl font-light tracking-tight"
+          className="text-3xl font-light tracking-tight sm:text-4xl"
           style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
         >
           Hydra1mage
@@ -60,7 +60,7 @@ export default function HomePage() {
         )}
       </div>
 
-      <div className="grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
         {TOOLS.map((t) => (
           <Link
             key={t.href}

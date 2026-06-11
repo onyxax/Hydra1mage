@@ -75,7 +75,7 @@ export default function InfoTool({ imageFile, previewUrl }: ToolProps) {
 
   if (!info) {
     return (
-      <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 sm:gap-4">
         <ToolCard title="Image Info" icon={Info} zone="Details">
           <p className="text-xs text-center py-8" style={{ color: "var(--text-muted)" }}>
             Upload an image to view its details
@@ -160,11 +160,11 @@ export default function InfoTool({ imageFile, previewUrl }: ToolProps) {
           <p className="text-[10px] tracking-widest" style={{ color: "var(--text-muted)" }}>
             Top 5 most frequent colors
           </p>
-          <div className="flex gap-2">
+          <div className="flex gap-2 overflow-x-auto">
             {info.dominantColors.map((color, i) => (
               <div key={i} className="flex flex-col items-center gap-1">
                 <div
-                  className="h-10 w-10 rounded-xl border"
+                  className="h-8 w-8 shrink-0 rounded-xl border sm:h-10 sm:w-10"
                   style={{
                     backgroundColor: color,
                     borderColor: "var(--border)",

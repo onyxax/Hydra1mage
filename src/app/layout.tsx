@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ThemeInit } from "@/components/ThemeInit";
 import { ImageProvider } from "@/lib/image-context";
-import TopBar from "@/components/TopBar";
+import Sidebar from "@/components/Sidebar";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -194,8 +194,8 @@ export default function RootLayout({
         <Analytics />
         <ImageProvider>
           <div className="min-h-screen" style={{ backgroundColor: "var(--bg-primary)" }}>
-            <TopBar />
-            <main className="mx-auto max-w-5xl px-8 pt-24 pb-16">
+            <Sidebar />
+            <main className="mx-auto max-w-5xl px-8 pt-20 pb-16">
               {children}
             </main>
           </div>

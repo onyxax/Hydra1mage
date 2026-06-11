@@ -139,10 +139,10 @@ export default function AdjustTool({ imageFile, previewUrl, onFileSelect }: Tool
   );
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6 sm:gap-8">
       <div>
         <h1
-          className="text-3xl font-light tracking-tight"
+          className="text-2xl font-light tracking-tight sm:text-3xl"
           style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
         >
           Adjust
@@ -153,7 +153,7 @@ export default function AdjustTool({ imageFile, previewUrl, onFileSelect }: Tool
       </div>
 
       {previewUrl ? (
-        <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1fr_380px]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_380px]">
           <div className="flex flex-col gap-4">
             <CanvasPreview previewUrl={previewUrl} draw={drawPreview} />
           </div>

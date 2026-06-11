@@ -166,7 +166,7 @@ export default function ExtractThumbnailTool({ onFileSelect }: ToolProps) {
   );
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 sm:gap-4">
       {thumbPreviewUrl && (
         <CanvasPreview previewUrl={thumbPreviewUrl} draw={drawPreview} />
       )}

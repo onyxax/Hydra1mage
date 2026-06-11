@@ -163,9 +163,9 @@ export default function EffectsTool({ imageFile, previewUrl, onFileSelect }: Too
   const activeMeta = EFFECTS.find((e) => e.id === activeEffect);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6 sm:gap-8">
       <div>
-        <h1 className="text-3xl font-light tracking-tight" style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}>
+        <h1 className="text-2xl font-light tracking-tight sm:text-3xl" style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}>
           Effects
         </h1>
         <p className="mt-1 text-sm" style={{ color: "var(--text-muted)" }}>
@@ -174,7 +174,7 @@ export default function EffectsTool({ imageFile, previewUrl, onFileSelect }: Too
       </div>
 
       {previewUrl ? (
-        <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1fr_380px]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_380px]">
           <div className="flex flex-col gap-4">
             <CanvasPreview previewUrl={previewUrl} draw={drawPreview} />
           </div>
@@ -185,7 +185,7 @@ export default function EffectsTool({ imageFile, previewUrl, onFileSelect }: Too
               const CatIcon = cat.icon;
               return (
                 <ToolCard key={cat.id} title={cat.label} icon={CatIcon} zone="Effects">
-                  <div className="grid grid-cols-2 gap-1.5">
+                  <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-2">
                     {catEffects.map((e) => {
                       const Icon = e.icon;
                       const isActive = activeEffect === e.id;

@@ -125,10 +125,10 @@ export default function CropPage() {
   const aspectRatio = PRESET_RATIOS[preset] ?? NaN;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 sm:gap-8">
       <div>
         <h1
-          className="text-3xl font-light tracking-tight"
+          className="text-2xl font-light tracking-tight sm:text-3xl"
           style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
         >
           Crop
@@ -139,7 +139,7 @@ export default function CropPage() {
       </div>
 
       {previewUrl && imgNatural ? (
-        <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1fr_420px]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_420px]">
           <div className="flex items-stretch justify-center">
             <div className="w-full">
               <CropEditor
@@ -201,7 +201,7 @@ export default function CropPage() {
                   Dimensions
                 </span>
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-2">
                 <InputField label="X" value={String(cropX)} onChange={(v) => setCropX(Number(v) || 0)} unit="px" />
                 <InputField label="Y" value={String(cropY)} onChange={(v) => setCropY(Number(v) || 0)} unit="px" />
                 <InputField label="Width" value={cropW} onChange={setCropW} unit="px" />

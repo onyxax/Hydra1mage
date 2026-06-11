@@ -17,8 +17,8 @@ export default function ToolCard({
   children,
 }: ToolCardProps) {
   return (
-    <div className="card">
-      <div className="mb-5 flex items-center gap-3">
+    <div className="card p-4 sm:p-6">
+      <div className="mb-4 flex items-center gap-3 sm:mb-5">
         <div
           className="flex h-9 w-9 items-center justify-center rounded-xl"
           style={{ backgroundColor: "var(--accent-soft)", color: "var(--accent)" }}

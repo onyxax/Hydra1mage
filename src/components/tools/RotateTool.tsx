@@ -67,10 +67,10 @@ export default function RotateTool({ imageFile, previewUrl, onFileSelect }: Tool
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6 sm:gap-8">
       <div>
         <h1
-          className="text-3xl font-light tracking-tight"
+          className="text-2xl font-light tracking-tight sm:text-3xl"
           style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
         >
           Rotate

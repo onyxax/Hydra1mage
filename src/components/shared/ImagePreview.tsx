@@ -29,7 +29,7 @@ export function ImagePreview({
       }}
     >
       <div
-        className="flex items-center gap-3 px-5 py-3.5"
+        className="flex items-center gap-3 px-3 py-3 sm:px-5 sm:py-3.5"
         style={{ borderBottom: "1px solid var(--border-subtle)" }}
       >
         <ImageIcon className="h-4 w-4 shrink-0" style={{ color: "var(--accent)" }} />
@@ -56,7 +56,7 @@ export function ImagePreview({
       <img
         src={previewUrl}
         alt={fileName}
-        className="max-h-[400px] w-full object-contain"
+        className="max-h-[250px] w-full object-contain sm:max-h-[400px]"
         style={{ backgroundColor: "var(--bg-secondary)" }}
       />
     </div>

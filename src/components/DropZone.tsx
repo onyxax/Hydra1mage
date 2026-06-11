@@ -106,7 +106,7 @@ export default function DropZone({ onFileSelect }: DropZoneProps) {
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") handleClick();
       }}
-      className="group flex w-full cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed py-16 transition-colors duration-200"
+      className="group flex w-full cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed py-10 transition-colors duration-200 sm:gap-4 sm:py-16"
       style={{
         borderColor: dragging ? "var(--accent)" : "var(--border)",
         backgroundColor: dragging ? "var(--accent-soft)" : "transparent",
@@ -143,9 +143,9 @@ export default function DropZone({ onFileSelect }: DropZoneProps) {
           {dragging ? "" : "or click to browse files"}
         </p>
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-2">
+      <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
         {FORMATS.map((fmt) => (
-          <span key={fmt} className="rounded-md border px-2 py-1 text-[10px] font-medium" style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}>
+          <span key={fmt} className="rounded-md border px-1.5 py-0.5 text-[9px] font-medium sm:px-2 sm:py-1 sm:text-[10px]" style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}>
             {fmt}
           </span>
         ))}

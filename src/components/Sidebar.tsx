@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Crop,
   Maximize,
@@ -35,30 +35,39 @@ const NAV_ITEMS = [
   { href: "/info", label: "Info", icon: Info },
 ];
 
-export default function TopBar() {
+export default function Sidebar() {
   const pathname = usePathname();
   const { imageFile, handleClearImage } = useImageContext();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 border-b"
-      style={{
-        backgroundColor: "var(--bg-primary)",
-        borderColor: "var(--border-subtle)",
-      }}
-    >
-      {/* Desktop */}
-      <div className="hidden items-center gap-2 px-5 py-2.5 md:flex">
-        <Link href="/" className="mr-2 flex items-center gap-2">
-          <svg className="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="none">
+    <>
+      {/* ═══════════════════ DESKTOP TOPBAR (original) ═══════════════════ */}
+      <header
+        className="fixed top-0 left-0 right-0 z-50 hidden items-center gap-2 border-b px-5 py-1.5 md:flex"
+        style={{
+          backgroundColor: "var(--bg-primary)",
+          borderColor: "var(--border-subtle)",
+        }}
+      >
+        <div className="mr-2 flex items-center gap-2">
+          <svg className="h-5 w-5" viewBox="0 0 32 32" fill="none">
             <defs>
-              <linearGradient id="tb-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id="topbar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#C9A67A"/>
                 <stop offset="100%" stopColor="#A07D58"/>
               </linearGradient>
             </defs>
-            <rect width="32" height="32" rx="8" fill="url(#tb-grad)"/>
+            <rect width="32" height="32" rx="8" fill="url(#topbar-grad)"/>
             <g transform="translate(16,16)">
               <rect x="-6" y="-6" width="12" height="12" rx="2" fill="none" stroke="white" strokeWidth="1.8" opacity="0.9"/>
               <rect x="-3" y="-3" width="6" height="6" rx="1" fill="white" opacity="0.9"/>
@@ -69,7 +78,7 @@ export default function TopBar() {
           <span className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>
             Hydra1mage
           </span>
-        </Link>
+        </div>
 
         <nav className="flex items-center gap-1 overflow-x-auto">
           {NAV_ITEMS.map((item) => {
@@ -155,19 +164,25 @@ export default function TopBar() {
           )}
           <ThemeToggle />
         </div>
-      </div>
+      </header>
 
-      {/* Mobile */}
-      <div className="flex items-center justify-between px-4 py-3 md:hidden">
+      {/* ═══════════════════ MOBILE TOPBAR ═══════════════════ */}
+      <header
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b px-4 py-3 md:hidden"
+        style={{
+          backgroundColor: "var(--bg-primary)",
+          borderColor: "var(--border-subtle)",
+        }}
+      >
         <Link href="/" className="flex items-center gap-2">
           <svg className="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="none">
             <defs>
-              <linearGradient id="tb-grad-m" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id="sb-m-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#C9A67A"/>
                 <stop offset="100%" stopColor="#A07D58"/>
               </linearGradient>
             </defs>
-            <rect width="32" height="32" rx="8" fill="url(#tb-grad-m)"/>
+            <rect width="32" height="32" rx="8" fill="url(#sb-m-grad)"/>
             <g transform="translate(16,16)">
               <rect x="-6" y="-6" width="12" height="12" rx="2" fill="none" stroke="white" strokeWidth="1.8" opacity="0.9"/>
               <rect x="-3" y="-3" width="6" height="6" rx="1" fill="white" opacity="0.9"/>
@@ -182,14 +197,20 @@ export default function TopBar() {
 
         <div className="flex items-center gap-2">
           {imageFile && (
-            <button
-              onClick={handleClearImage}
-              className="flex h-9 w-9 items-center justify-center rounded-lg border transition-all duration-200"
-              style={{ backgroundColor: "var(--bg-secondary)", borderColor: "transparent" }}
-              aria-label="Clear image"
-            >
-              <X className="h-4 w-4" style={{ color: "var(--text-secondary)" }} />
-            </button>
+            <>
+              <div className="h-5 w-px" style={{ backgroundColor: "var(--border)" }} />
+              <span className="max-w-[100px] truncate text-[10px] font-medium sm:max-w-[140px]" style={{ color: "var(--text-muted)" }}>
+                {imageFile.name}
+              </span>
+              <button
+                onClick={handleClearImage}
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border transition-all duration-200"
+                style={{ backgroundColor: "var(--bg-secondary)", borderColor: "transparent" }}
+                aria-label="Clear image"
+              >
+                <X className="h-3.5 w-3.5" style={{ color: "var(--text-secondary)" }} />
+              </button>
+            </>
           )}
           <ThemeToggle />
           <button
@@ -205,48 +226,109 @@ export default function TopBar() {
             )}
           </button>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile dropdown */}
+      {/* Mobile overlay */}
       {mobileOpen && (
-        <nav
-          className="flex flex-col gap-1 border-t px-4 py-3 md:hidden"
-          style={{ borderColor: "var(--border-subtle)", backgroundColor: "var(--bg-primary)" }}
-        >
-          {NAV_ITEMS.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200"
-                style={{
-                  backgroundColor: active ? "var(--accent-soft)" : "transparent",
-                  color: active ? "var(--accent)" : "var(--text-secondary)",
-                }}
-              >
-                <item.icon className="h-4 w-4" />
-                {item.label}
-              </Link>
-            );
-          })}
-          <div className="mt-2 border-t pt-3" style={{ borderColor: "var(--border-subtle)" }}>
+        <div
+          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      {/* Mobile slide-out menu */}
+      <nav
+        className="fixed top-0 right-0 z-50 flex h-full w-64 flex-col border-l md:hidden overflow-hidden"
+        style={{
+          backgroundColor: "var(--bg-primary)",
+          borderColor: "var(--border-subtle)",
+          transform: mobileOpen ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      >
+        <div className="flex items-center justify-between border-b px-5 py-4" style={{ borderColor: "var(--border-subtle)" }}>
+          <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
+            <svg className="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="none">
+              <defs>
+                <linearGradient id="sb-m2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#C9A67A"/>
+                  <stop offset="100%" stopColor="#A07D58"/>
+                </linearGradient>
+              </defs>
+              <rect width="32" height="32" rx="8" fill="url(#sb-m2-grad)"/>
+              <g transform="translate(16,16)">
+                <rect x="-6" y="-6" width="12" height="12" rx="2" fill="none" stroke="white" strokeWidth="1.8" opacity="0.9"/>
+                <rect x="-3" y="-3" width="6" height="6" rx="1" fill="white" opacity="0.9"/>
+                <line x1="6" y1="-6" x2="9" y2="-9" stroke="white" strokeWidth="1.8" strokeLinecap="round" opacity="0.9"/>
+                <line x1="-6" y1="6" x2="-9" y2="9" stroke="white" strokeWidth="1.8" strokeLinecap="round" opacity="0.9"/>
+              </g>
+            </svg>
+            <span className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>
+              Hydra1mage
+            </span>
+          </Link>
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="flex h-8 w-8 items-center justify-center rounded-lg"
+            aria-label="Close menu"
+          >
+            <X className="h-4 w-4" style={{ color: "var(--text-muted)" }} />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-3 py-4">
+          <div className="flex flex-col gap-1">
+            {NAV_ITEMS.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200"
+                  style={{
+                    backgroundColor: active ? "var(--accent-soft)" : "transparent",
+                    color: active ? "var(--accent)" : "var(--text-secondary)",
+                  }}
+                >
+                  <item.icon className="h-4 w-4" />
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="border-t px-5 py-4" style={{ borderColor: "var(--border-subtle)" }}>
+          <a
+            href="https://github.com/onyxax/Hydra1mage"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            GitHub
+          </a>
+          <p className="mt-3 text-center text-xs font-medium" style={{ color: "var(--text-muted)" }}>
+            Open source for all
+          </p>
+          <p className="mt-1.5 text-center text-xs" style={{ color: "var(--text-muted)" }}>
+            by{" "}
             <a
-              href="https://github.com/onyxax/Hydra1mage"
+              href="https://guns.lol/onyxax"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium"
-              style={{ color: "var(--text-secondary)" }}
+              className="font-medium underline transition-colors duration-200"
+              style={{ color: "var(--accent)" }}
             >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-              GitHub
+              onyxax
             </a>
-          </div>
-        </nav>
-      )}
-    </header>
+          </p>
+        </div>
+      </nav>
+    </>
   );
 }
