@@ -124,7 +124,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE",
+    google: "google65d27bd527fedace",
   },
   other: {
     "application-name": SITE_NAME,
