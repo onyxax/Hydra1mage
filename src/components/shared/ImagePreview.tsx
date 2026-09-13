@@ -1,6 +1,7 @@
 "use client";
 
 import { ImageIcon, X } from "lucide-react";
+import { truncateFileName } from "@/lib/format";
 
 export function formatFileSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
@@ -33,11 +34,15 @@ export function ImagePreview({
         style={{ borderBottom: "1px solid var(--border-subtle)" }}
       >
         <ImageIcon className="h-4 w-4 shrink-0" style={{ color: "var(--accent)" }} />
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-xs font-medium" style={{ color: "var(--text-primary)" }}>
-            {fileName}
+        <div className="min-w-0 flex-1 overflow-hidden">
+          <p
+            className="truncate text-xs font-medium"
+            style={{ color: "var(--text-primary)" }}
+            title={fileName}
+          >
+            {truncateFileName(fileName, 32)}
           </p>
-          <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>
+          <p className="text-[10px] truncate" style={{ color: "var(--text-muted)" }} title={fileSize}>
             {fileSize}
           </p>
         </div>

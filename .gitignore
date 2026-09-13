@@ -8,11 +8,16 @@ package-lock.json
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+.pnpm-store/
 
 # Next.js
 .next/
 out/
 build/
+dist/
+.turbo/
+.cache/
+.parcel-cache/
 
 # TypeScript
 *.tsbuildinfo
@@ -24,12 +29,29 @@ next-env.d.ts
 .env.development.local
 .env.test.local
 .env.production.local
+.env*.local
 
-# Debug
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+logs/
+*.log
+lerna-debug.log*
+
+# Testing & Coverage — خارج المشروع
+coverage/
+.coverage/
+.nyc_output/
+junit.xml
+test-results/
+playwright-report/
+playwright/.cache/
+*.lcov
+*.test.ts.snap
+TEST_REPORT.md
+vitest.html
 
 # Vercel
 .vercel/
@@ -37,17 +59,36 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# Editor
+# Editor & IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temp & OS outside
+tmp/
+temp/
+.tmp/
+.tmp-*/
+.cache-*/
 
 # Misc
 *.pem
-coverage/
+*.key
+*.cert
+.opencode/
+.claude/
+.cursor/
+windsurf/
 
 # Project docs (not for repo)
 ChangeLog.md

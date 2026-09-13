@@ -1,7 +1,10 @@
 "use client";
 
 import DropZone from "@/components/DropZone";
-import { ImagePreview, formatFileSize } from "./ImagePreview";
+import { formatFileSize } from "./ImagePreview";
+import { ToolHeader } from "./ToolHeader";
+import { SmartImagePreview } from "./SmartPreview";
+import { useImageDimensions } from "@/hooks/useImageLoader";
 
 export default function ToolLayout({
   title,
@@ -22,20 +25,13 @@ export default function ToolLayout({
   livePreview?: React.ReactNode;
   children: React.ReactNode;
 }) {
-  if (!previewUrl) {
+  const dims = useImageDimensions(previewUrl);
+
+  // Defensive: previewUrl and imageFile must both exist; otherwise sync race or clear caused null file.
+  if (!previewUrl || !imageFile) {
     return (
       <div className="flex flex-col gap-6 sm:gap-8">
-        <div>
-          <h1
-            className="text-2xl font-light tracking-tight sm:text-3xl"
-            style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
-          >
-            {title}
-          </h1>
-          <p className="mt-1 text-sm" style={{ color: "var(--text-muted)" }}>
-            {subtitle}
-          </p>
-        </div>
+        <ToolHeader title={title} subtitle={subtitle} />
         <DropZone onFileSelect={onFileSelect} />
       </div>
     );
@@ -43,25 +39,27 @@ export default function ToolLayout({
 
   return (
     <div className="flex flex-col gap-6 sm:gap-8">
-      <div>
-        <h1
-          className="text-2xl font-light tracking-tight sm:text-3xl"
-          style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
-        >
-          {title}
-        </h1>
-        <p className="mt-1 text-sm" style={{ color: "var(--text-muted)" }}>
-          {subtitle}
-        </p>
-      </div>
+      <ToolHeader title={title} subtitle={subtitle} />
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_380px]">
         <div className="flex flex-col gap-4">
-          <ImagePreview
+          <SmartImagePreview
             previewUrl={previewUrl}
-            fileName={imageFile!.name}
-            fileSize={formatFileSize(imageFile!.size)}
-            onClear={onClearImage}
+            fileName={imageFile.name}
+            fileSize={formatFileSize(imageFile.size)}
+            dims={dims}
+            title={title}
+            subtitle={`${dims ? `${dims.w} × ${dims.h}` : ""} • ${imageFile.type || "image"}`}
+            badge={imageFile.name.split(".").pop()?.toUpperCase()}
+            headerAction={
+              <button
+                onClick={onClearImage}
+                className="rounded-lg border px-2 py-1 text-[11px] font-medium"
+                style={{ backgroundColor: "var(--bg-secondary)", borderColor: "var(--border)", color: "var(--text-muted)" }}
+              >
+                Change
+              </button>
+            }
           />
           {livePreview}
         </div>

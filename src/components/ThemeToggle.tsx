@@ -3,13 +3,47 @@
 import { useCallback, useEffect, useSyncExternalStore } from "react";
 import { Sun, Moon } from "lucide-react";
 
+function getSystemDark() {
+  try {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  } catch {
+    return true; // fallback to dark to match previous default
+  }
+}
+
 function subscribe(callback: () => void) {
-  window.addEventListener("storage", callback);
-  return () => window.removeEventListener("storage", callback);
+  const onStorage = () => callback();
+  const mql = (() => {
+    try {
+      return window.matchMedia("(prefers-color-scheme: dark)");
+    } catch {
+      return null;
+    }
+  })();
+
+  window.addEventListener("storage", onStorage);
+  const onSystem = () => {
+    // Only notify when user has no explicit choice — otherwise system change is irrelevant
+    try {
+      if (!localStorage.getItem("theme")) callback();
+    } catch {}
+  };
+  mql?.addEventListener("change", onSystem);
+
+  return () => {
+    window.removeEventListener("storage", onStorage);
+    mql?.removeEventListener("change", onSystem);
+  };
 }
 
 function getSnapshot() {
-  return localStorage.getItem("theme") ?? "dark";
+  try {
+    const stored = localStorage.getItem("theme");
+    if (stored) return stored;
+    return getSystemDark() ? "dark" : "light";
+  } catch {
+    return "dark";
+  }
 }
 
 function getServerSnapshot() {
@@ -29,7 +63,12 @@ export default function ThemeToggle() {
     try {
       localStorage.setItem("theme", next);
     } catch {}
+    // Notify same-tab listeners (storage event only fires cross-tab)
     window.dispatchEvent(new StorageEvent("storage"));
+    // Also ensure class is updated immediately (subscribe will also fire via storage listener)
+    try {
+      document.documentElement.classList.toggle("dark", next === "dark");
+    } catch {}
   }, [dark]);
 
   return (

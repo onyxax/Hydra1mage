@@ -1,237 +1,299 @@
 <p align="center">
-  <img src="public/favicon.svg" width="100" height="100" alt="Hydra1mage Logo">
+  <img src="public/favicon.svg" width="88" height="88" alt="Hydra1mage Logo">
 </p>
 
 <h1 align="center">Hydra1mage</h1>
 
 <p align="center">
-  <strong>Free, open-source image processing suite — 100% client-side, zero uploads, instant results.</strong>
+  <strong>Professional image toolbox — 10 tools, zero uploads, 100% in your browser.</strong><br>
+  <span style="color:#888">Crop · Resize · Compress · Convert · Rotate · Flip · Adjust · Effects · Thumbnail · Info</span>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js" alt="Next.js">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react" alt="React">
-  <img src="https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Tailwind-4-38BDF8?style=flat-square&logo=tailwindcss" alt="Tailwind">
-  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="MIT License">
-  <img src="https://img.shields.io/badge/PRs-Welcome-orange?style=flat-square" alt="PRs Welcome">
+  <a href="https://skillicons.dev" target="_blank">
+    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,vercel" alt="Tech Stack" />
+  </a>
 </p>
 
 <p align="center">
-  <a href="https://hydra1mage.vercel.app" target="_blank">
-    <img src="https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel" alt="Live Demo">
-  </a>
-  <a href="https://github.com/onyxax/Hydra1mage" target="_blank">
-    <img src="https://img.shields.io/badge/Source_Code-GitHub-181717?style=for-the-badge&logo=github" alt="GitHub">
-  </a>
+  <img src="https://img.shields.io/badge/license-MIT-B8926A?style=for-the-badge" alt="MIT">
+  <img src="https://img.shields.io/badge/PRs-welcome-181717?style=for-the-badge&logo=gitpullrequest&logoColor=white" alt="PRs Welcome">
+  <img src="https://img.shields.io/github/stars/onyxax/Hydra1mage?style=for-the-badge&logo=github&labelColor=181717&color=B8926A" alt="Stars">
+</p>
+
+<p align="center">
+  <a href="https://hydra1mage.vercel.app" target="_blank"><img src="https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo"></a>
+  <a href="https://github.com/onyxax/Hydra1mage" target="_blank"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
+</p>
+
+<p align="center">
+  <sub>Privacy-first · No sign-up · No limits · All processing via Canvas API — your files never leave the device.</sub>
 </p>
 
 ---
 
-## Preview
+## Table of Contents
 
-### Home — Upload & Choose Your Tool
+- [Preview](#preview)
+- [Why Hydra1mage](#why-hydra1mage)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Design System](#design-system)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Scripts](#scripts)
+- [Deployment & SEO](#deployment--seo)
+- [Contributing](#contributing)
+- [Roadmap](#roadmap)
+- [License & Credits](#license--credits)
+
+---
+
+<h2><img src="https://api.iconify.design/lucide:image.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Preview</h2>
+
+### <img src="https://api.iconify.design/lucide:layout-dashboard.svg?color=%23B8926A" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" /> Home — Dashboard & Search
 
 <p align="center">
   <img src="public/screenshots/home.png" alt="Hydra1mage Home" width="100%">
 </p>
 
-The dashboard gives you instant access to all 10 tools. Drop an image anywhere to get started — it never leaves your browser.
+Tool groups (Edit / Optimize / Enhance / Inspect), live search, drag-and-drop zone and persistent preview. Pick any tool — your image follows you.
 
-### Crop — Interactive Visual Editor
-
-<p align="center">
-  <img src="public/screenshots/crop.png" alt="Hydra1mage Crop Tool" width="100%">
-</p>
-
-Drag-based crop editor powered by Cropper.js. Free-form or preset ratios (1:1, 4:3, 16:9). Pixel-perfect precision with real-time dimension readout.
-
-### Effects — 15+ Artistic Filters
+### <img src="https://api.iconify.design/lucide:crop.svg?color=%23B8926A" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" /> Crop — Precision Editor
 
 <p align="center">
-  <img src="public/screenshots/effects.png" alt="Hydra1mage Effects Tool" width="100%">
+  <img src="public/screenshots/crop.png" alt="Crop" width="100%">
 </p>
 
-Transform your images with blur, sharpen, emboss, noise, vignette, grayscale, sepia, pixelate, duotone, posterize, edge detect, oil paint, and more.
+Cropper.js powered, free-form + presets (1:1, 4:3, 16:9, 9:16, 21:9), live dimension readout and full-resolution export.
 
-### Adjust — Fine-Tune Every Detail
+### <img src="https://api.iconify.design/lucide:arrow-left-right.svg?color=%23B8926A" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" /> Convert — 11 Formats
 
 <p align="center">
-  <img src="public/screenshots/adjust.png" alt="Hydra1mage Adjust Tool" width="100%">
+  <img src="public/screenshots/convert.png" alt="Convert" width="100%">
 </p>
 
-Full control over exposure, temperature, tint, highlights, shadows, vibrance, gamma, and sharpness. Full-resolution live preview.
+PNG, JPG, WebP, AVIF, GIF, BMP, TIFF, ICO, ICNS, SVG, PDF. Quality control and correct ICO headers.
 
-### Convert — 11 Format Support
+### <img src="https://api.iconify.design/lucide:sparkles.svg?color=%23B8926A" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" /> Effects — 15 Filters
 
 <p align="center">
-  <img src="public/screenshots/convert.png" alt="Hydra1mage Convert Tool" width="100%">
+  <img src="public/screenshots/effects.png" alt="Effects" width="100%">
 </p>
 
-Convert between PNG, JPG, WebP, AVIF, GIF, BMP, TIFF, ICO, ICNS, SVG, and PDF. All processing happens client-side.
+Blur, sharpen, emboss, noise, vignette, grayscale, sepia, pixelate, duotone, posterize, edge-detect, oil paint, invert and more.
+
+### <img src="https://api.iconify.design/lucide:sliders-horizontal.svg?color=%23B8926A" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" /> Adjust — Pro Grade
+
+<p align="center">
+  <img src="public/screenshots/adjust.png" alt="Adjust" width="100%">
+</p>
+
+6 presets (Natural / Bright / Warm / Cool / Vivid / Dramatic) + 8 sliders (exposure, temperature, tint, highlights, shadows, vibrance, gamma, sharpness) with live preview.
+
+### <img src="https://api.iconify.design/lucide:info.svg?color=%23B8926A" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" /> Info — Metadata Dashboard
+
+Dominant palette (click to copy HEX), brightness distribution, quick stats, file / dimension / technical breakdown — computed locally.
 
 ---
 
-## About
+<h2><img src="https://api.iconify.design/lucide:gem.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Why Hydra1mage</h2>
 
-Hydra1mage is a powerful, free online image editor that runs entirely in your browser. No server uploads, no sign-ups, no limits. Your images never leave your device — every operation happens locally using the Canvas API and modern Web Technologies.
-
-**Key Philosophy:** Privacy-first image processing. What happens in your browser stays in your browser.
-
----
-
-## Features
-
-| Tool | Description |
-|------|-------------|
-| **Crop** | Interactive crop editor powered by Cropper.js — free-form or preset ratios (1:1, 4:3, 16:9) |
-| **Resize** | Resize images with locked/unlocked aspect ratio — batch-friendly |
-| **Smart Compress** | Auto-optimize file size with binary search — target specific KB or let AI decide |
-| **Convert** | Convert between PNG, JPG, WebP, AVIF, GIF, BMP, TIFF, ICO, ICNS, SVG, PDF |
-| **Rotate** | Rotate to any angle — 90° presets or custom slider (-180° to 180°) |
-| **Flip** | Flip horizontally, vertically, or both |
-| **Adjust** | Fine-tune exposure, temperature, tint, highlights, shadows, vibrance, gamma, sharpness |
-| **Effects** | 15+ artistic filters — blur, grayscale, sepia, pixelate, emboss, vignette, duotone, oil paint, and more |
-| **YouTube Thumbnail** | Extract high-resolution thumbnails from any YouTube video |
-| **Image Info** | View EXIF metadata, dimensions, file size, and dominant color palette |
+| Principle | How it’s enforced |
+|---|---|
+| **<img src="https://api.iconify.design/lucide:shield-check.svg?color=%23B8926A" width="14" height="14" style="vertical-align: middle;" /> Privacy-first** | No upload. Every operation uses `Canvas`, `createObjectURL`, `toBlob` in the browser. |
+| **<img src="https://api.iconify.design/lucide:zap.svg?color=%23B8926A" width="14" height="14" style="vertical-align: middle;" /> Instant** | Turbopack dev, 11 static routes, no server round-trip. |
+| **<img src="https://api.iconify.design/lucide:badge-check.svg?color=%23B8926A" width="14" height="14" style="vertical-align: middle;" /> Professional** | Deep modules, typed APIs, consistent design tokens. |
+| **<img src="https://api.iconify.design/lucide:accessibility.svg?color=%23B8926A" width="14" height="14" style="vertical-align: middle;" /> Accessible** | Keyboard `Ctrl+Z` / `Ctrl+Y`, ARIA labels, `prefers-color-scheme` auto theme. |
 
 ---
 
-## Tech Stack
+<h2><img src="https://api.iconify.design/lucide:layout-grid.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Features</h2>
 
-- **Framework:** [Next.js 16](https://nextjs.org) (App Router, Turbopack)
-- **UI:** [React 19](https://react.dev) + [TypeScript 5](https://www.typescriptlang.org)
-- **Styling:** [Tailwind CSS 4](https://tailwindcss.com)
-- **Icons:** [Lucide React](https://lucide.dev)
-- **Crop Engine:** [Cropper.js 1.5](https://cropperjs.github.io) (CDN)
-- **Deployment:** [Vercel](https://vercel.com)
+| # | Tool | Route | Highlights |
+|---|---|---|---|
+| 1 | **Crop** | `/crop` | Cropper.js, ratio presets, live preview |
+| 2 | **Resize** | `/resize` | Locked aspect, presets 25%–200% & 512/1024/1920 |
+| 3 | **Compress** | `/compress` | Smart binary-search to target KB + manual slider |
+| 4 | **Convert** | `/convert` | 11 formats, quality control |
+| 5 | **Rotate** | `/rotate` | Presets 90/180/270/-90 + free angle -180→180 |
+| 6 | **Flip** | `/flip` | Horizontal / Vertical / Both |
+| 7 | **Adjust** | `/adjust` | 8 sliders + 6 presets, hold-to-compare |
+| 8 | **Effects** | `/effects` | 15 effects, search + category pills |
+| 9 | **Thumbnail** | `/extract-thumbnail` | 5 YouTube resolutions, preview + download |
+| 10 | **Info** | `/info` | Palette, histogram, EXIF & efficiency |
+
+**Global:** Floating dock (`xl` only) — History (undo/redo/jump, branching, persist), File (Save/Copy/Clear), Source (GitHub), System (Theme).
 
 ---
 
-## Getting Started
+<h2><img src="https://api.iconify.design/lucide:layers.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Tech Stack</h2>
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,vercel" alt="Tech Stack" />
+  </a>
+</p>
+
+| Layer | Choice | Notes |
+|---|---|---|
+| **Framework** | **Next.js 16** | App Router, Turbopack, per-route metadata |
+| **UI** | **React 19** + **TypeScript 5** | Strict, atomic `ImageContext` |
+| **Styling** | **Tailwind CSS 4** | CSS vars `--bg-*` `--accent` |
+| **Icons** | **Lucide React** | Tree-shakable, 340+ icons via `lucide-static` CDN |
+| **Canvas** | **Canvas API** | `core.ts` — no WASM |
+| **Crop** | **Cropper.js 1.5** | CDN, lazy-loaded |
+| **Analytics** | **Vercel Analytics** | Privacy-friendly |
+| **Deploy** | **Vercel** | Static, edge |
+
+---
+
+<h2><img src="https://api.iconify.design/lucide:building-2.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Architecture</h2>
+
+### <img src="https://api.iconify.design/lucide:package.svg?color=%23B8926A" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" /> Deep Modules `src/lib/image/`
+
+Split from 1116-LOC `image-utils.ts` into focused facade:
+
+```
+lib/image/
+  core.ts       # loadImage, ObjectURL lifecycle, downloadBlob
+  geometry.ts   # dimensions, aspect, orientation
+  compress.ts   # binary-search quality
+  convert.ts    # 11 formats, ICO header
+  adjust.ts     # 8-prop pipeline
+  effects.ts    # 15 filters
+  info.ts       # 100px sample, dominant colors, brightness
+  history.ts    # ImageHistory (MAX 20, branching, persist)
+  index.ts      # barrel
+```
+
+### <img src="https://api.iconify.design/lucide:brain.svg?color=%23B8926A" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" /> State `ImageContext`
+
+- Single `historyRef: ImageHistory` — no scattered states
+- Atomic `{file, url}` with `useRef` + `useEffect` revoke
+- `handleFileSelect / Clear / Undo / Redo / Jump` + `Ctrl+Z` / `Ctrl+Y`
+
+### <img src="https://api.iconify.design/lucide:hook.svg?color=%23B8926A" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" /> Hooks
+
+- `useImageLoader` — safe dimensions
+- `useCanvasPreview` — canvas lifecycle
+
+### <img src="https://api.iconify.design/lucide:puzzle.svg?color=%23B8926A" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" /> Components
+
+```
+navigation/  nav-items.ts, Logo.tsx, DesktopTopBar.tsx, MobileNav.tsx, FloatingDock.tsx (68px, timeline)
+shared/      ToolLayout.tsx, ToolHeader.tsx, ImagePreview.tsx, CanvasPreview.tsx
+tools/       AdjustTool.tsx, EffectsTool.tsx, InfoTool.tsx, ...
+```
+
+---
+
+<h2><img src="https://api.iconify.design/lucide:palette.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Design System</h2>
+
+- **Tokens** `globals.css`: `--bg-primary / --bg-elevated`, `--text-primary / -muted`, `--border`, `--accent`
+- **Theme**: blocking `ThemeScript` in `<head>` + `matchMedia` listener — no FOUC
+- **Cards**: `rounded-[20px]` (dock `18px`), `border`, `backdrop-blur`
+- **Dock**: `68px` wide, `6px` padding, `HISTORY/FILE/SOURCE/SYSTEM` pills, timeline panel `300px`
+- **Type**: `Space Grotesk` + `JetBrains Mono`
+
+---
+
+<h2><img src="https://api.iconify.design/lucide:folder-tree.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Project Structure</h2>
+
+```
+Hydra1mage/
+├── public/ (favicon.svg, robots.txt, sitemap.xml, screenshots/)
+├── src/
+│   ├── app/ (layout.tsx, page.tsx, globals.css, crop/ resize/ compress/ convert/ rotate/ flip/ adjust/ effects/ extract-thumbnail/ info/)
+│   ├── components/ (navigation/, shared/, tools/, DropZone.tsx, Sidebar.tsx, ThemeInit.tsx)
+│   ├── hooks/ (useImageLoader.ts, useCanvasPreview.ts)
+│   └── lib/ (image/*, image-context.tsx, format.ts)
+├── eslint.config.mjs
+├── vitest.config.mjs
+└── package.json
+```
+
+---
+
+<h2><img src="https://api.iconify.design/lucide:rocket.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Getting Started</h2>
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org) 18+ (recommended: 20)
-- npm, yarn, or pnpm
+- Node.js 18+ (20 recommended)
+- npm / yarn / pnpm
 
 ### Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/onyxax/Hydra1mage.git
 cd Hydra1mage
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open http://localhost:3000
 
-### Production Build
+### Production
 
 ```bash
-npm run build
+npm run build   # 11 static routes, typecheck
 npm run start
 ```
 
 ---
 
-## Project Structure
+<h2><img src="https://api.iconify.design/lucide:terminal.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Scripts</h2>
 
-```
-Hydra1mage/
-├── public/
-│   ├── favicon.svg          # App icon (earth-tone gradient)
-│   ├── robots.txt           # SEO crawler rules
-│   ├── sitemap.xml          # Sitemap for search engines
-│   └── screenshots/         # App screenshots for README & social embeds
-│       ├── home.png         # Dashboard screenshot
-│       ├── crop.png         # Crop tool screenshot
-│       ├── convert.png      # Convert tool screenshot
-│       ├── adjust.png       # Adjust tool screenshot
-│       └── effects.png      # Effects tool screenshot
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx       # Root layout, fonts, SEO, JSON-LD
-│   │   ├── page.tsx         # Dashboard — tool card grid
-│   │   ├── globals.css      # Theme, components, scrollbar, slider
-│   │   ├── crop/            # Crop tool page
-│   │   ├── resize/          # Resize tool page
-│   │   ├── compress/        # Smart compress page
-│   │   ├── convert/         # Format converter page
-│   │   ├── rotate/          # Rotate tool page
-│   │   ├── flip/            # Flip tool page
-│   │   ├── adjust/          # Image adjustment page
-│   │   ├── effects/         # Artistic effects page
-│   │   ├── extract-thumbnail/ # YouTube thumbnail extractor
-│   │   └── info/            # Image metadata viewer
-│   ├── components/
-│   │   ├── TopBar.tsx       # Navigation header
-│   │   ├── DropZone.tsx     # File upload drop zone
-│   │   ├── CropEditor.tsx   # Cropper.js wrapper
-│   │   ├── CanvasPreview.tsx # Live canvas preview
-│   │   ├── ToolCard.tsx     # Reusable card component
-│   │   ├── ThemeToggle.tsx  # Dark/light mode toggle
-│   │   ├── tools/           # Tool-specific components
-│   │   └── shared/          # Shared UI components
-│   └── lib/
-│       ├── image-context.tsx # React Context for image state
-│       └── image-utils.ts   # Canvas processing functions
-├── vercel.json              # Vercel deployment config
-├── tsconfig.json            # TypeScript configuration
-├── eslint.config.mjs        # ESLint configuration
-└── postcss.config.mjs       # PostCSS (Tailwind)
+| Script | Purpose |
+|---|---|
+| `npm run dev` | Next dev (Turbopack) |
+| `npm run build` | Production build |
+| `npm run start` | Serve build |
+| `npm run lint` | ESLint |
+
+---
+
+<h2><img src="https://api.iconify.design/lucide:globe.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Deployment & SEO</h2>
+
+- **Vercel** — `vercel.json`, static output
+- **Per-route** `layout.tsx` metadata (OG `1200×630`, Twitter, canonical)
+- **Root** `layout.tsx`: `metadataBase`, `robots`, `verification.google`, `JSON-LD` `WebApplication` with 10-item `featureList`
+- **Assets**: `robots.txt`, `sitemap.xml`, `favicon.svg`
+
+---
+
+<h2><img src="https://api.iconify.design/lucide:hand-heart.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Contributing</h2>
+
+PRs welcome!
+
+```bash
+git checkout -b feature/my-feature
+git commit -m "feat: my feature"
+git push origin feature/my-feature
+# open PR against main
 ```
 
----
-
-## Key Features
-
-### Privacy First
-All image processing happens in your browser using the Canvas API. No data is sent to any server. Your images never leave your device.
-
-### Smart Compress
-Upload an image and let Hydra1mage automatically optimize it. Set a target file size in KB, or let the algorithm find the best quality-to-size ratio using binary search.
-
-### 11 Format Conversion
-Convert between PNG, JPG, WebP, AVIF, GIF, BMP, TIFF, ICO, ICNS, SVG, and PDF — all client-side.
-
-### Dark & Light Theme
-Automatic theme detection with manual toggle. Earth-tone color palette designed for comfort during long editing sessions.
-
-### SEO Optimized
-JSON-LD structured data, Open Graph tags, per-route metadata, robots.txt, and sitemap.xml — ready for Google indexing.
+Keep it client-side, follow `var(--*)` tokens and `ToolHeader`/`ToolCard` primitives.
 
 ---
 
-## Contributing
+<h2><img src="https://api.iconify.design/lucide:map.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> Roadmap</h2>
 
-Contributions are welcome! Feel free to open an issue or submit a pull request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- [ ] Batch queue for resize/compress
+- [ ] WASM AVIF tuning
+- [ ] Export presets & history polish
+- [ ] Cmd+K palette
+- [ ] PWA offline
 
 ---
 
-## Author
+<h2><img src="https://api.iconify.design/lucide:scale.svg?color=%23B8926A" width="22" height="22" style="vertical-align: middle; margin-right: 6px;" /> License & Credits</h2>
 
-**onyxax** — [@onyxax](https://guns.lol/onyxax)
-
----
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
+- **License:** [MIT](LICENSE)
+- **Author:** **onyxax** — https://guns.lol/onyxax
+- **Crop engine:** [Cropper.js](https://github.com/fengyuanchen/cropperjs)
 
 <p align="center">
-  Made with care by the open-source community
+  <sub>Made with care — open source, privacy-first. Star the repo if you like it.</sub>
 </p>

@@ -84,7 +84,7 @@ function loadCropper(): Promise<void> {
 
 const CropEditor = forwardRef<CropEditorHandle, CropEditorProps>(
   function CropEditor(
-    { src, cropX, cropY, cropW, cropH, aspectRatio = NaN, onChange },
+    { src, naturalWidth, naturalHeight, cropX, cropY, cropW, cropH, aspectRatio = NaN, onChange },
     ref
   ) {
     const imageRef = useRef<HTMLImageElement>(null);
@@ -168,19 +168,24 @@ const CropEditor = forwardRef<CropEditorHandle, CropEditorProps>(
 
     return (
       <div
-        className="relative overflow-hidden"
-        style={{
-          backgroundColor: "var(--bg-elevated)",
-          border: "1px solid var(--border-subtle)",
-          borderRadius: 0,
-        }}
+        className="overflow-hidden rounded-2xl"
+        style={{ backgroundColor: "var(--bg-elevated)", border: "1px solid var(--border-subtle)", boxShadow: "var(--shadow-sm)" }}
       >
-        <img
-          ref={imageRef}
-          src={src}
-          alt="Crop preview"
-          style={{ display: "block", maxWidth: "100%" }}
-        />
+        <div className="flex items-center gap-2 px-3 py-2" style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+          <span className="text-[11px] font-bold tracking-widest" style={{ color: "var(--accent)" }}>CROP EDITOR</span>
+          <span className="hidden text-[11px] sm:inline" style={{ color: "var(--text-muted)" }}>• {naturalWidth} × {naturalHeight} → {cropW} × {cropH}</span>
+          <span className="ml-auto hidden items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium sm:inline-flex" style={{ backgroundColor: "var(--bg-secondary)", borderColor: "var(--border)", color: "var(--text-muted)" }}>
+            {Number.isNaN(aspectRatio) ? "Free" : `${Math.round(aspectRatio * 10) / 10}:1`}
+          </span>
+        </div>
+        <div className="relative overflow-hidden p-1" style={{ backgroundColor: "var(--bg-secondary)" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img ref={imageRef} src={src} alt="Crop preview" style={{ display: "block", maxWidth: "100%", maxHeight: 520, margin: "0 auto" }} />
+        </div>
+        <div className="flex items-center justify-between px-3 py-1.5 text-[10px]" style={{ backgroundColor: "var(--bg-elevated)", borderTop: "1px solid var(--border-subtle)", color: "var(--text-muted)" }}>
+          <span>Drag to adjust • Scroll to zoom</span>
+          <span className="hidden sm:inline">{cropW} × {cropH} px • {Math.round((cropW * cropH) / 1e6 * 100) / 100} MP</span>
+        </div>
       </div>
     );
   }

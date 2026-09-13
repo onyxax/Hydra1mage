@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { ThemeInit } from "@/components/ThemeInit";
+import { ThemeInit, ThemeScript } from "@/components/ThemeInit";
 import { ImageProvider } from "@/lib/image-context";
 import Sidebar from "@/components/Sidebar";
 
@@ -55,7 +55,6 @@ export const metadata: Metadata = {
     "photo editor online",
     "image converter online",
     "transparent png",
-    "remove background",
     "image compressor",
     "jpeg compressor",
     "png compressor",
@@ -181,7 +180,9 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        <ThemeScript />
+      </head>
       <body
         suppressHydrationWarning
         className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}
